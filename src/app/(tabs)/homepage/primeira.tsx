@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
 });
 
 
+// CÓDIGO ANTIGO ABAIXO. APAGAR APÓS FAZE DE TESTE
 
 // import React, { useEffect, useState } from 'react';
 // import { Text, View, StyleSheet, Button } from 'react-native';
