@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import { useRouter, Router } from 'expo-router';  // Correção aqui: useRouter é necessário
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getAuth } from "firebase/auth";
 import { auth } from "./services/firebaseConnection";
 
 export default function Index() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const router = useRouter();  // Correção aqui: useRouter precisa ser chamado
+
+    const handleLogin = () => {
+        signInWithEmailAndPassword(getAuth(), email, password)
+          .then((user) => {
+            if (user) router.replace("/(tabs)/homepage");
+          })
+          .catch((err) => {
+            alert(err?.message);
+          });
+      };
 
     async function createUser() {
         createUserWithEmailAndPassword(auth, email, password)
@@ -17,7 +27,7 @@ export default function Index() {
             })
             .catch((error) => console.log(error.message)); // Corrigido aqui: melhor tratamento de erro
     };
-
+// INICIO - FUNÇÃO DE LOGIN ANTIGA, EM TESTES
     async function login() {
         signInWithEmailAndPassword(auth, email, password)
             .then(value => {
@@ -25,6 +35,7 @@ export default function Index() {
             })
             .catch((error) => console.log(error.message)); // Corrigido aqui: melhor tratamento de erro
     };
+// FIM - FUNÇÃO DE LOGIN ANTIGA, EM TESTES
 
     async function logout() {
         signOut(auth)
@@ -57,7 +68,7 @@ export default function Index() {
             />
             <Button
                 title="Entrar"
-                onPress={login}
+                onPress={handleLogin}
             />
             <Button
                 title="Sair"
