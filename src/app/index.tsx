@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
-import { useRouter, Router } from 'expo-router';  // Correção aqui: useRouter é necessário
+import { useRouter } from 'expo-router';  // Correção aqui: useRouter é necessário
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getAuth } from "firebase/auth";
 import { auth } from "./services/firebaseConnection";
 
 export default function Index() {
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const router = useRouter();  // Correção aqui: useRouter precisa ser chamado
+    const router = useRouter();
 
+    // INICIO LOGAR USUÁIO EXISTENTE 
     const handleLogin = () => {
         signInWithEmailAndPassword(getAuth(), email, password)
           .then((user) => {
@@ -18,7 +20,9 @@ export default function Index() {
             alert(err?.message);
           });
       };
-
+    // FIM LOGAR USUÁIO EXISTENTE 
+    
+    // INICIO CRIAR UM NOVO NO BANCO DE DADOS
     async function createUser() {
         createUserWithEmailAndPassword(auth, email, password)
             .then(value => {
