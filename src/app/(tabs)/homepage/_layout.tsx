@@ -25,22 +25,15 @@ screenOptions={{
       }}
         >
             <Tabs.Screen 
-            name="index" 
+            name="primeira" 
             options={{ 
                 // headerShown: false, 
-                title: "",
+                title: "tela 1",
                 headerTitleStyle: {
-                   color: "#fff"
-                },
-                headerStyle: {
-                    backgroundColor: '#242420', // Cor de fundo do header (azul)
-                  },            
-                tabBarLabelStyle: { 
-                   fontSize: 12, // ajuste o tamanho da fonte aqui
-                   fontWeight: 'bold', // opcional: para deixar o texto em negrito
+                   color: "#000"
                 },
                 tabBarIcon: ({ size, color, focused }) => {
-                    return <FontAwesome name='home' color={color} size={33} top={5}/>
+                    return <FontAwesome name='home' color={color} size={24}/>
                     
                 },
             }}
@@ -48,66 +41,49 @@ screenOptions={{
 
 
         <Tabs.Screen
-          name="Cursos"
+          name="segunda"
           options={{ 
             // headerShown: false, 
-            title: "",
+            title: "tela 2",
             headerTitleStyle: {
-               color: "#fff"
-            },
-            headerStyle: {
-                backgroundColor: '#242420', // Cor de fundo do header (azul)
-              },            
-            tabBarLabelStyle: { 
-               fontSize: 12, // ajuste o tamanho da fonte aqui
-               fontWeight: 'bold', // opcional: para deixar o texto em negrito
+               color: "#000"
             },
             tabBarIcon: ({ size, color, focused }) => {
-                return <MaterialCommunityIcons name='wallet' color={color} size={33} top={5}/>
+                return <MaterialCommunityIcons name='wallet' color={color} size={24}/>
                 
             },
         }}
     />   
     
         <Tabs.Screen
-          name="Create_vaga"
+          name="terceira"
           options={{ 
             // headerShown: false, 
-            title: "",
+            title: "tela 3",
             headerTitleStyle: {
-               color: "#fff"
-            },
-            headerStyle: {
-                backgroundColor: '#242420', // Cor de fundo do header (azul)
-              },            
-            tabBarLabelStyle: { 
-               fontSize: 12, // ajuste o tamanho da fonte aqui
-               fontWeight: 'bold', // opcional: para deixar o texto em negrito
+               color: "#000"
             },
             tabBarIcon: ({ size, color, focused }) => {
-                return <AntDesign name='pluscircle' color={color} size={30} top={5}/>
+                return <AntDesign name='pluscircle' color={color} size={24}/>
                 
             },
         }}
         />
-    
+
         <Tabs.Screen
-          name="Account"
-          options={{
-            headerShown: false, 
-            title: "",
-            tabBarLabelStyle: { 
-               fontSize: 12, // ajuste o tamanho da fonte aqui
-               fontWeight: 'bold', // opcional: para deixar o texto em negrito
-               marginTop: 5,
+          name="quarta"
+          options={{ 
+            // headerShown: false, 
+            title: "tela 4",
+            headerTitleStyle: {
+               color: "#000"
             },
             tabBarIcon: ({ size, color, focused }) => {
-                return <Ionicons name='settings' color={color} size={32} top={5} />
+                return <AntDesign name='bars' color={color} size={24}/>
                 
             },
-          }}
+        }}
         />
-
       </Tabs>
     );
 

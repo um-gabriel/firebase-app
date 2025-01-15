@@ -12,9 +12,9 @@ export default function Index() {
 
     // INICIO LOGAR USUÁIO EXISTENTE 
     const handleLogin = () => {
-        signInWithEmailAndPassword(getAuth(), email, password)
+        signInWithEmailAndPassword(auth, email, password)
           .then((user) => {
-            if (user) router.replace("/(tabs)/homepage");
+            if (user) router.replace("/(tabs)/homepage/primeira");
           })
           .catch((err) => {
             alert(err?.message);

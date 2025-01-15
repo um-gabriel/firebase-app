@@ -6,11 +6,14 @@ import { collection, getDocs } from 'firebase/firestore';  // Funções para bus
 // Defina o tipo dos itens para que o TypeScript saiba o que esperar.
 type Item = {
   id: string;
-  nome: string; // Supondo que você tenha um campo 'nome' nos seus documentos
+  nome: string;
+  empresa: string;
+  salario: number;
 };
 
 export default function Terceira() {
-  // Agora você define explicitamente o tipo dos itens como 'Item[]'
+// Inicio da Função que Retorna Itens na FlatList
+// Agora você define explicitamente o tipo dos itens como 'Item[]'
   const [itens, setItens] = useState<Item[]>([]); // Estado para armazenar os itens da coleção
   const [loading, setLoading] = useState(true); // Estado para controle de loading
 
@@ -21,7 +24,7 @@ export default function Terceira() {
         const querySnapshot = await getDocs(collection(db, 'vagas')); // Substitua 'itens' pelo nome da sua coleção
         const fetchedItens = querySnapshot.docs.map(doc => ({
           id: doc.id,
-          ...doc.data() as { nome: string } // Aqui estamos informando que os documentos têm o campo 'nome'
+          ...doc.data() as { nome: string, empresa: string, salario: number } // Aqui estamos informando que os documentos têm o campo 'nome'
         }));
         setItens(fetchedItens); // Agora, o TypeScript entende que você está passando um array de 'Item'
       } catch (error) {
@@ -41,6 +44,7 @@ export default function Terceira() {
       </View>
     );
   }
+// Fim da Função que Retorna Itens na FlatList
 
   return (
     <View style={styles.container}>
@@ -49,7 +53,9 @@ export default function Terceira() {
         data={itens}
         renderItem={({ item }) => (
           <View style={styles.item}>
-            <Text style={styles.itemText}>{item.nome}</Text> {/* Aqui você pode acessar outros campos do item */}
+            <Text style={styles.itemText}>Nome: {item.nome}</Text> {/* Nome da vaga */}
+            <Text style={styles.itemText}>Empresa: {item.empresa}</Text> {/* Nome da empresa */}
+            <Text style={styles.itemText}>Salário: R${item.salario}</Text> {/* Salário formatado */}
           </View>
         )}
         keyExtractor={(item) => item.id}
