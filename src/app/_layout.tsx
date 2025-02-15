@@ -1,15 +1,17 @@
-// PÁGINA RESPONSÁVEL PELO LAYOUT DA ANIMAÇÃO DE STACK E TOPBAR DO 'INDEX DE LOGIN'
-import { Stack } from "expo-router";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Drawer } from 'expo-router/drawer';
 
 export default function Layout() {
-    return(
-        <Stack>
-            {/* STACK DA PÁGINA PRINCIPAL */}
-            <Stack.Screen name="index" options={{ headerShown:false}}/>
-            <Stack.Screen name="Login" options={{ headerShown:false}}/>
-            <Stack.Screen name="Create" options={{ headerShown:false}}/>
-            {/* STACK DA PÁGINA COM TABBAR */}
-            <Stack.Screen name="(tabs)" options={{ headerShown:false}}/>      
-        </Stack>
-    )
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Drawer>
+        <Drawer.Screen 
+            name="(tabs)"
+        />
+        <Drawer.Screen 
+            name="index"
+        />
+      </Drawer>
+    </GestureHandlerRootView>
+  );
 }

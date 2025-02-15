@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TextInput, Button } from "react-native";
 import { useRouter } from 'expo-router';  // Correção aqui: useRouter é necessário
+
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getAuth } from "firebase/auth";
 import { auth } from "./services/firebaseConnection";
 
