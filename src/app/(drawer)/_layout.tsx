@@ -9,7 +9,7 @@ export default function Layout() {
             name="(tabs)"
         />
         <Drawer.Screen 
-            name="index"
+            name="home"
         />
       </Drawer>
     </GestureHandlerRootView>

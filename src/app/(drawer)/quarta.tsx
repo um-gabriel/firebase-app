@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
 import { useState } from "react";
 
-import { db } from '../../services/firebaseConnection.js';
+import { db } from '../services/firebaseConnection.js';
 import { collection, addDoc } from "firebase/firestore";
 
 export default function Quarta() {
@@ -9,7 +9,8 @@ export default function Quarta() {
 // Inicio da Função de Inserir Dados no TextInput
 const [nomeVaga, setNomeVaga] = useState("");
 const [nomeEmpresa, setNomeEmpresa] = useState("");
-const [valorSalario, setValorSalario] = useState("")
+const [valorSalario, setValorSalario] = useState("");
+const [descricao, setDescricao] = useState("");
 
 const addVagaNoFirestore = async() => {
   try {
@@ -17,12 +18,14 @@ const addVagaNoFirestore = async() => {
   {
     nome: nomeVaga,
     empresa: nomeEmpresa,
-    salario: valorSalario
+    salario: valorSalario,
+    descricaoVaga: descricao
   });
   console.log("Documento ID: ", refColecao.id);
   setNomeVaga("")
   setNomeEmpresa("")
   setValorSalario("")
+  setDescricao("")
   }
   catch (error){
   console.error("Erro ao adicionar documento: ", error)
@@ -51,6 +54,14 @@ const addVagaNoFirestore = async() => {
         placeholder="Salário"
         style={styles.input}
       />
+      <TextInput
+        value={descricao}
+        multiline
+        numberOfLines={11}
+        onChangeText={setDescricao}
+        placeholder="Descrição da Vaga"
+        style={styles.inputDesc}
+      />
       <Button
         title="Adicionar"
         onPress={addVagaNoFirestore}
@@ -75,5 +86,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     width: "70%"
+  },
+  inputDesc: {
+    borderWidth: 1,
+    padding: 10,
+    margin: 12,
+    width: "70%",
+    height: '20%',
   },
 });
